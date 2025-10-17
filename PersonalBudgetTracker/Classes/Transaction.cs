@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PersonalBudgetTracker.Classes
 {
-    internal class Transaction
+    public class Transaction
     {      
-        private decimal Amount = 0;
+        public decimal Amount { get; private set; }
 
         public string Title { get; set; }
 
@@ -18,6 +18,15 @@ namespace PersonalBudgetTracker.Classes
         public string Description { get; set; }
 
         DueDate Date { get; set; }
+
+        public Transaction(string title, string category, string description, decimal amount, DueDate date)
+        {
+            Title = title;
+            Category = category;
+            Description = description;
+            Amount = amount;
+            Date = date;
+        }
 
         public void ShowInfo()
         {
