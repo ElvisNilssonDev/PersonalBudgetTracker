@@ -18,7 +18,7 @@ namespace PersonalBudgetTracker.Classes
                 BudgetManager manager = new BudgetManager();
                 bool running = true;
 
-                while (running)
+                while (running) //Our MainMenu!! Until we stop the program it will continue to apear 
                 {
                     Console.Clear();
                     Console.WriteLine("\n ===Welcome To The Personal Budget Tracker=== ");
@@ -30,28 +30,28 @@ namespace PersonalBudgetTracker.Classes
                     Console.Write("Choose an option: ");
                     string choice = Console.ReadLine()!;
 
-                    switch (choice)
+                    switch (choice) // our choices
                     { 
                         case "1":
                             Console.Clear();
-                            Console.Write("Enter title: ");
+                            Console.Write("==Enter title: ");
                             string title = Console.ReadLine()!;
 
-                            Console.Write("Enter category: ");
+                            Console.Write("==Enter category: ");
                             string category = Console.ReadLine()!;
 
-                            Console.Write("Enter description: ");
+                            Console.Write("==Enter description: ");
                             string description = Console.ReadLine()!;
 
-                            Console.Write("Enter amount: ");
+                            Console.Write("==Enter amount: ");
                             decimal amount = Convert.ToDecimal(Console.ReadLine());
 
-                            Console.Write("Enter due date (yyyy-mm-dd): ");
-                            DateTime dateInput = DateTime.Parse(Console.ReadLine()!);
-                            Transaction.DueDate dueDate = new Transaction.DueDate(dateInput);
-
+                            Console.Write("==Enter due date (yyyy-mm-dd): ");
+                            DateTime dateInput = DateTime.Parse(Console.ReadLine()!); // Parses the user input (string) into a DateTime object
+                            Transaction.DueDate dueDate = new Transaction.DueDate(dateInput); 
+                            // Wraps the DateTime in a DueDate object for use in the Transaction class 
                             
-                            manager.AddTransaction(title, category, description, amount, dueDate);
+                            manager.AddTransaction(title, category, description, amount, dueDate); //adds a new transaction to the transactions list
                             Console.WriteLine("Transaction added successfully!\n");
                             Console.WriteLine("Press to continue...");
                             Console.ReadKey();
@@ -60,7 +60,7 @@ namespace PersonalBudgetTracker.Classes
                         case "2":
                             Console.Clear();
                             Console.WriteLine("Showing all transactions:");
-                            manager.ShowAllTransactions();
+                            manager.ShowAllTransactions(); // Shows all transactions, color coded and ready to be seen
                             Console.WriteLine("Press to continue...");
                             Console.ReadKey();
                             break;
@@ -68,7 +68,7 @@ namespace PersonalBudgetTracker.Classes
                         case "3":
                             Console.Clear();
                             Console.WriteLine("Calculating total of transactions:");
-                            manager.CalculateBalance();
+                            manager.CalculateBalance(); // Calculates the Salary and Expenses and then calculates the current balance (Yes I can go into Debt :>)
                             Console.WriteLine("Press to continue...");
                             Console.ReadKey();
                             break;
@@ -76,7 +76,7 @@ namespace PersonalBudgetTracker.Classes
                         case "4":
                             Console.Clear();
                             Console.WriteLine("Deleting...");
-                            manager.DeletedTransaction();
+                            manager.DeletedTransaction(); //deletes the last inputted List object
                             Console.WriteLine("Press to continue...");
                             Console.ReadKey();
                             break;
