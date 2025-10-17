@@ -46,7 +46,7 @@ namespace PersonalBudgetTracker.Classes
 
             Console.WriteLine($"Total Income (Salary): {totalIncome}\n");
             Console.WriteLine($"Total Expenses (All Others): {totalExpenses}\n");
-            Console.WriteLine($"Net Balance: {totalIncome - totalExpenses}\n");
+            Console.WriteLine($"Current Balance: {totalIncome - totalExpenses}\n");
         }
 
 

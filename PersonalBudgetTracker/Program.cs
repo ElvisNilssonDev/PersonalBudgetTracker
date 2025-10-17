@@ -6,7 +6,7 @@ namespace PersonalBudgetTracker
     {
         static void Main(string[] args)
         {            
-            MainMenu.ShowMainMenu();
+            MainMenu.ShowMainMenu(); // Clean Program.cs
         }
     }
 }
