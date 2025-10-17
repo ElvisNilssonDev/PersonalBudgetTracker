@@ -5,14 +5,15 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace PersonalBudgetTracker.Classes
 {
-    internal class BudgetManager
+    public class BudgetManager
     {
-        private List<Transaction> TransactionList = new List<Transaction>();
+        public List<Transaction> TransactionList = new List<Transaction>();
 
-        public void AddTransaction(string title, string category, string description, decimal amount, DueDate date)
+        public void AddTransaction(string title, string category, string description, decimal amount, Transaction.DueDate date)
         {
             TransactionList.Add(new Transaction(title, category, description, amount, date));
         }
@@ -27,20 +28,35 @@ namespace PersonalBudgetTracker.Classes
 
         public void CalculateBalance()
         {
-            
-            decimal Totalamount = 0;
+            decimal totalIncome = 0m;
+            decimal totalExpenses = 0m;
 
             foreach (Transaction transaction in TransactionList)
             {
-                Totalamount += transaction.Amount;
+                // Treat "salary" as income
+                if (transaction.Category.Equals("salary", StringComparison.OrdinalIgnoreCase))
+                {
+                    totalIncome += transaction.Amount;
+                }
+                else
+                {
+                    totalExpenses += transaction.Amount;
+                }
             }
 
-            Console.WriteLine($"Total Spent:{Totalamount}");
+            Console.WriteLine($"Total Income (Salary): {totalIncome}\n");
+            Console.WriteLine($"Total Expenses (All Others): {totalExpenses}\n");
+            Console.WriteLine($"Net Balance: {totalIncome - totalExpenses}\n");
         }
+
 
         public void DeletedTransaction()
         {
-            TransactionList.Clear(); // clears all but I could do Transactionlist.Remove(obj); to specify.
+            if (TransactionList.Count > 0) // always check to avoid errors with going below. cant take away what you dont have.
+            {
+                TransactionList.RemoveAt(TransactionList.Count - 1);
+                Console.WriteLine("Last transaction removed.");
+            } 
         }
     }
 }

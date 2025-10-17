@@ -17,7 +17,8 @@ namespace PersonalBudgetTracker.Classes
 
         public string Description { get; set; }
 
-        DueDate Date { get; set; }
+        public DueDate Date { get; private set; }
+        
 
         public Transaction(string title, string category, string description, decimal amount, DueDate date)
         {
@@ -26,7 +27,7 @@ namespace PersonalBudgetTracker.Classes
             Description = description;
             Amount = amount;
             Date = date;
-        }
+        }    
 
         public void ShowInfo()
         {
@@ -40,7 +41,50 @@ namespace PersonalBudgetTracker.Classes
 
             string category = Category;
 
-            Console.WriteLine($"Transcation {title} on the {date} costed you {amount} \nCATEGORY: {category} \nDESCRIPTION: {description}");
+            // Set color based on description
+            var categoryColors = new Dictionary<string, ConsoleColor>(StringComparer.OrdinalIgnoreCase)
+            {
+               { "salary", ConsoleColor.Green },
+               { "swish", ConsoleColor.Green },
+               { "food", ConsoleColor.Red },
+               { "groceries", ConsoleColor.Red },
+               { "clothes", ConsoleColor.Red },
+               { "shopping", ConsoleColor.Red },
+               { "transport", ConsoleColor.Yellow },
+               { "entertainment", ConsoleColor.Magenta },
+               { "electronics", ConsoleColor.Red },
+               { "bill", ConsoleColor.Red },
+               { "bills", ConsoleColor.Red },
+            };
+
+            // Determine color
+            if (categoryColors.TryGetValue(Category, out ConsoleColor color))
+            {
+                Console.ForegroundColor = color;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.White; // default
+            }
+
+            Console.WriteLine($"|{amount}:kr|{title}| - |{date}|\nCATEGORY: {category} \nDESCRIPTION: {description}\n");
+
+            Console.ResetColor();
+        }
+
+        public class DueDate
+        {
+            public DateTime DateValue { get; set; }
+
+            public DueDate(DateTime date)
+            {
+                DateValue = date;
+            }
+
+            public override string ToString()
+            {
+                return DateValue.ToShortDateString();
+            }
         }
 
     }

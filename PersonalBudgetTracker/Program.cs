@@ -1,10 +1,12 @@
-﻿namespace PersonalBudgetTracker
+﻿using PersonalBudgetTracker.Classes;
+
+namespace PersonalBudgetTracker
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
+        {            
+            MainMenu.ShowMainMenu();
         }
     }
 }
