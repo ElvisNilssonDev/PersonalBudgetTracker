@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PersonalBudgetTracker.Classes
 {
-    public class Transaction // Attributes inside my Transaction class
+    public class Transaction // Properties inside my Transaction class
     {      
         public decimal Amount { get; private set; }
 
@@ -20,7 +20,7 @@ namespace PersonalBudgetTracker.Classes
         public DueDate Date { get; private set; }
         
 
-        public Transaction(string title, string category, string description, decimal amount, DueDate date) // A Constructor to initialize our attributes
+        public Transaction(string title, string category, string description, decimal amount, DueDate date) // A Constructor to initialize our properties
         {
             Title = title;
             Category = category;
